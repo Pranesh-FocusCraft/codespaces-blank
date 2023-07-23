@@ -1,14 +1,13 @@
 import EventItem from './EventItem'
+import classes from './EventList.module.css'
 
 const EventList = ({ items }) => {
 	return (
-		<div>
-			<ul>
-				{items.map((a) => (
-					<EventItem data={a} key={a.id} />
-				))}
-			</ul>
-		</div>
+		<ul className={classes.list}>
+			{items.map((a) => (
+				<EventItem data={a} key={a.id} />
+			))}
+		</ul>
 	)
 }
 

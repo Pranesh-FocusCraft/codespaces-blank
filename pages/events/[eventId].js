@@ -1,5 +1,11 @@
 import { useRouter } from 'next/router'
 import { getEventById } from '../../data/dummy-data'
+import {
+	EventContent,
+	EventLogistics,
+	EventSummary,
+	LogisticsItem,
+} from '../../components/event-detail'
 
 const EventId = () => {
 	const router = useRouter()
@@ -8,10 +14,21 @@ const EventId = () => {
 
 	if (!eventData) return <h1>No Event found!</h1>
 
+	const { title, date, location, image, description } = eventData
+
 	return (
-		<div>
-			<h1>Events with {router.query.eventId}</h1>
-		</div>
+		<>
+			<EventSummary title={title} />
+			<EventLogistics
+				date={date}
+				address={location}
+				image={image}
+				imageAlt={title}
+			/>
+			<EventContent>
+				<p> {description} </p>
+			</EventContent>
+		</>
 	)
 }
 

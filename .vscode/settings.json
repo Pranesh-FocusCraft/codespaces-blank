@@ -1,4 +1,4 @@
 {
-	"window.zoomLevel": 2,
-	"files.autoSave": "off"
+	"files.autoSave": "off",
+	"git.closeDiffOnOperation": true
 }

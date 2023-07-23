@@ -1,4 +1,10 @@
 {
 	"files.autoSave": "off",
-	"git.closeDiffOnOperation": true
+	"git.closeDiffOnOperation": true,
+	"files.exclude": {
+		// "**/.git": false,
+		"**/coverage": true,
+		"**/node_modules": true,
+		"**/.next": true
+	}
 }

@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
-import { getEventById } from '../../data/dummy-data'
 import {
 	EventContent,
 	EventLogistics,
 	EventSummary,
-	LogisticsItem,
 } from '../../components/event-detail'
+import { getEventById } from '../../data/dummy-data'
 
 const EventId = () => {
 	const router = useRouter()

@@ -5,7 +5,7 @@ import {
 	EventSummary,
 } from '../../components/event-detail'
 import { getEventById } from '../../data/dummy-data'
-import ErrorAlert from '../../components/ui/ErrorAlert'
+import { ErrorAlert } from '../../components/ui'
 
 const EventId = () => {
 	const router = useRouter()

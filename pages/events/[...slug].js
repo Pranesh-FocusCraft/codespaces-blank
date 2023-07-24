@@ -1,9 +1,7 @@
 import { getFilteredEvents } from '../../data/dummy-data'
 import { useRouter } from 'next/router'
-import EventList from '../../components/events/EventList'
-import ResultsTitle from '../../components/events/ResultsTitle'
-import Button from '../../components/ui/Button'
-import ErrorAlert from '../../components/ui/ErrorAlert'
+import { EventList, ResultsTitle } from '../../components/events'
+import { Button, ErrorAlert } from '../../components/ui'
 
 const RemainingEvent = () => {
 	const { slug: eventDate } = useRouter().query

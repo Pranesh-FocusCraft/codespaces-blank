@@ -11,7 +11,7 @@ const Button = ({ link, children, onClick }) => {
 	}
 	return (
 		<button onClick={onClick} className={classes.btn}>
-			{children}{' '}
+			{children}
 		</button>
 	)
 }

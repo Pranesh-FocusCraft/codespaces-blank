@@ -23,11 +23,8 @@ const EventsSearch = ({ onSelect }) => {
 					</select>
 				</div>
 				<div className={classes.control}>
-					<label htmlFor='month' ref={month}>
-						{' '}
-						Month{' '}
-					</label>
-					<select id='month'>
+					<label htmlFor='month'> Month </label>
+					<select id='month' ref={month}>
 						<option value='1'> Jan </option>
 						<option value='2'> Feb </option>
 						<option value='3'> Mar </option>

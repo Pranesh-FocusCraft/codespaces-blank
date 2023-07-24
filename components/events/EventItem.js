@@ -4,11 +4,7 @@ import DateIcon from '../icons/date-icon'
 import Button from '../ui/Button'
 import classes from './EventItem.module.css'
 
-const EventItem = ({ data }) => {
-	console.log(data)
-
-	const { title, image, id, location, date } = data
-
+const EventItem = ({ data: { title, image, id, location, date } }) => {
 	const readableDate = new Date(date).toLocaleDateString('en-US', {
 		day: 'numeric',
 		month: 'long',

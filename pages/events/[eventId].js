@@ -5,13 +5,19 @@ import {
 	EventSummary,
 } from '../../components/event-detail'
 import { getEventById } from '../../data/dummy-data'
+import ErrorAlert from '../../components/ui/ErrorAlert'
 
 const EventId = () => {
 	const router = useRouter()
 
 	const eventData = getEventById(router.query.eventId)
 
-	if (!eventData) return <h1>No Event found!</h1>
+	if (!eventData)
+		return (
+			<ErrorAlert>
+				<h1>No Event found!</h1>
+			</ErrorAlert>
+		)
 
 	const { title, date, location, image, description } = eventData
 

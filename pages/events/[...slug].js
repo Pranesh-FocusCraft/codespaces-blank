@@ -2,6 +2,8 @@ import { getFilteredEvents } from '../../data/dummy-data'
 import { useRouter } from 'next/router'
 import EventList from '../../components/events/EventList'
 import ResultsTitle from '../../components/events/ResultsTitle'
+import Button from '../../components/ui/Button'
+import ErrorAlert from '../../components/ui/ErrorAlert'
 
 const RemainingEvent = () => {
 	const { slug: eventDate } = useRouter().query
@@ -20,16 +22,24 @@ const RemainingEvent = () => {
 		month > 12 ||
 		month < 1
 
+	const renderInvalid = (text) => (
+		<>
+			<ErrorAlert>
+				<p> {text} </p>
+			</ErrorAlert>
+			<div className='center'>
+				<Button link='/events'> Show All Events </Button>
+			</div>
+		</>
+	)
+
 	if (isDateValid) {
-		return (
-			<p className='center'> Invalid filter , please adjust your values ... </p>
-		)
+		return renderInvalid('Invalid filter , please adjust your values ...')
 	}
 
 	const filteredEvents = getFilteredEvents({ year, month })
-
 	if (!filteredEvents.length) {
-		return <p className='center'> No Events are found for chosen filter! </p>
+		return renderInvalid('No Events are found for chosen filter! ')
 	}
 
 	return (

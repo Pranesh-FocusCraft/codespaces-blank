@@ -1,3 +1,9 @@
 {
-  "window.zoomLevel": 2
+	"files.autoSave": "off",
+	"git.closeDiffOnOperation": true,
+	"files.exclude": {
+		"**/coverage": true,
+		"**/node_modules": true,
+		"**/.next": true
+	}
 }

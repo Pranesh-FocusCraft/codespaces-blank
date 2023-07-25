@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-function ProductDetailPage({ product: { title, description } }) {
+function ProductDetailPage({ loadedProduct: { title, description } }) {
 	return (
 		<>
 			<h1> Title - {title} </h1>

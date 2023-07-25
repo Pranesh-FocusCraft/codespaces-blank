@@ -13,3 +13,5 @@ fallback
 
 1. fallback as true allows to specify the optional pages
 2. in tutorial it is said that since page is optional , the prop (loadedProduct) might be undefined when given page path in address bar directly, so have given 'Loading state'
+
+if fallback = 'blocking', then page waits till the data is got and renders the content , so no undefined check needed

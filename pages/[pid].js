@@ -1,7 +1,10 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-function ProductDetailPage({ loadedProduct: { title, description } }) {
+function ProductDetailPage({ loadedProduct }) {
+	if (!loadedProduct) return <p> Loading ... </p>
+
+	const { title, description } = loadedProduct
 	return (
 		<>
 			<h1> Title - {title} </h1>
@@ -26,10 +29,10 @@ export async function getStaticPaths() {
 	return {
 		paths: [
 			{ params: { pid: 'p1' } },
-			{ params: { pid: 'p2' } },
-			{ params: { pid: 'p3' } },
+			// { params: { pid: 'p2' } },
+			// { params: { pid: 'p3' } },
 		],
-		fallback: false,
+		fallback: true,
 	}
 }
 

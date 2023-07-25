@@ -15,3 +15,5 @@ fallback
 2. in tutorial it is said that since page is optional , the prop (loadedProduct) might be undefined when given page path in address bar directly, so have given 'Loading state'
 
 if fallback = 'blocking', then page waits till the data is got and renders the content , so no undefined check needed
+
+since the data used in getStaticProps and getStaticPaths are same usually it has common function

@@ -15,7 +15,7 @@ function HomePage({ products }) {
 }
 
 export async function getStaticProps(context) {
-	console.log('data - fetch')
+	// console.log('data - fetch')
 	const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
 	const jsonData = await fs.readFile(filePath)
 	const { products } = JSON.parse(jsonData)

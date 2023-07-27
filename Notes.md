@@ -19,3 +19,5 @@ if fallback = 'blocking', then page waits till the data is got and renders the c
 since the data used in getStaticProps and getStaticPaths are same usually it has common function
 
 getServerSideProps render when the link is visited , so it doesnt need getStaticProps or getStaticPaths, as it render the page in server and sends to client
+
+useSWR has built in feature for caching, and so on , it is an alternate for fetch

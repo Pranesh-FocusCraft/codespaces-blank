@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react'
+import useSWT from 'swr'
 
 function LastSales() {
-	const [data, setData] = useState()
+	const { data, error, isLoading } = useSWT(
+		'https://jsonplaceholder.typicode.com/todos/1',
+		(url) => fetch(url).then((res) => res.json())
+	)
 
-	useEffect(() => {
-		fetch('https://jsonplaceholder.typicode.com/todos/1')
-			.then((res) => res.json())
-			.then((data) => setData(data))
-	}, [])
-
-	if (!data) return <h1> Loading ... </h1>
+	if (error) return <h1> Failed to load </h1>
+	if (isLoading) return <h1> Loading ... </h1>
 
 	return (
 		<>

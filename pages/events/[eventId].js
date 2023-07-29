@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { getEventById, getAllEvents } from '../../helpers/api-util'
+import { getEventById, getFeaturedEvents } from '../../helpers/api-util'
 import EventSummary from '../../components/event-detail/event-summary'
 import EventLogistics from '../../components/event-detail/event-logistics'
 import EventContent from '../../components/event-detail/event-content'
@@ -33,13 +33,14 @@ function EventDetailPage({ event }) {
 export async function getStaticProps(context) {
 	const eventId = context.params.eventId
 	const event = await getEventById(eventId)
-	return { props: { event } }
+	if (!event) return { notFound: true }
+	return { props: { event: event ?? null }, revalidate: 30 }
 }
 
 export async function getStaticPaths() {
-	const events = await getAllEvents()
+	const events = await getFeaturedEvents()
 	const ids = events.map(({ id }) => ({ params: { eventId: id } }))
-	return { paths: ids, fallback: false }
+	return { paths: ids, fallback: 'blocking' }
 }
 
 export default EventDetailPage

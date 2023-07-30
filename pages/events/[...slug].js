@@ -1,3 +1,6 @@
+import { Fragment, useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import { getFilteredEvents } from '../../helpers/api-util'
 import EventList from '../../components/events/event-list'
 import ResultsTitle from '../../components/events/results-title'
@@ -15,12 +18,38 @@ const RenderFail = ({ text }) => (
 	</>
 )
 
-function FilteredEventsPage({ isDateNotValid, filteredEvents, year, month }) {
+function FilteredEventsPage() {
+	const router = useRouter()
+	const filterData = router.query.slug
+
+	const [year, month] = filterData.map((a) => +a)
+
+	const isDateNotValid =
+		isNaN(year) ||
+		isNaN(month) ||
+		year > 2030 ||
+		year < 2021 ||
+		month < 1 ||
+		month > 12
+
 	if (isDateNotValid) {
 		return <RenderFail text='Invalid filter. Please adjust your values!' />
 	}
 
-	if (!filteredEvents?.length) {
+	const [filteredEvents, setfilteredEvents] = useState()
+
+	const getData = useCallback(async () => {
+		const newFilteredEvents = await getFilteredEvents({ year, month })
+		setfilteredEvents(newFilteredEvents)
+	}, [getFilteredEvents])
+
+	useEffect(() => {
+		if (!filteredEvents?.length) getData()
+	}, [getData])
+
+	if (!filteredEvents) return <p className='center'> Loading... </p>
+
+	if (!filteredEvents.length) {
 		return <RenderFail text='No events found for the chosen filter!' />
 	}
 
@@ -32,35 +61,6 @@ function FilteredEventsPage({ isDateNotValid, filteredEvents, year, month }) {
 			<EventList items={filteredEvents} />
 		</>
 	)
-}
-
-export async function getServerSideProps(context) {
-	const [year, month] = context.params.slug.map((a) => +a)
-
-	const isDateNotValid =
-		isNaN(year) ||
-		isNaN(month) ||
-		year > 2030 ||
-		year < 2021 ||
-		month < 1 ||
-		month > 12
-
-	if (isDateNotValid) {
-		return {
-			// if we want we can use props to get if there is error
-			props: { isDateNotValid: true },
-			// if we want we can set 404 error page
-			/* notFound: true, */
-			// if we want we can redirect to another page
-			/* redirect: {
-				destination: '/error',
-			}, */
-		}
-	}
-
-	const filteredEvents = await getFilteredEvents({ year, month })
-
-	return { props: { filteredEvents, year, month } }
 }
 
 export default FilteredEventsPage

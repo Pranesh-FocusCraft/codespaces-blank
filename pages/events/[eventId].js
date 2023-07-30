@@ -18,9 +18,13 @@ function EventDetailPage(props) {
 
   return (
     <>
-    <Head >
+      <Head>
         <title > Event with id {event.id} </title>
         <meta name='description' content='Specific Event to work with' />
+      </Head>
+      <Head>
+        <title > Event with id {event.id} - </title>
+        {/* <meta name='description' content='Specific Event to work with' /> */}
       </Head>
       <EventSummary title={event.title} />
       <EventLogistics

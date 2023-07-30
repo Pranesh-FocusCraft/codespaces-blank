@@ -1,5 +1,4 @@
-import { Fragment } from 'react';
-
+import Head from 'next/head';
 import { getEventById, getFeaturedEvents } from '../../helpers/api-util';
 import EventSummary from '../../components/event-detail/event-summary';
 import EventLogistics from '../../components/event-detail/event-logistics';
@@ -18,7 +17,11 @@ function EventDetailPage(props) {
   }
 
   return (
-    <Fragment>
+    <>
+    <Head >
+        <title > Event with id {event.id} </title>
+        <meta name='description' content='Specific Event to work with' />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
@@ -29,7 +32,7 @@ function EventDetailPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
-    </Fragment>
+    </>
   );
 }
 
